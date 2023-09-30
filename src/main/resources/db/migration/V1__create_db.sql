@@ -1,0 +1,24 @@
+
+CREATE TABLE client (
+id IDENTITY PRIMARY KEY,
+name VARCHAR(200) NOT NULL,
+CONSTRAINT cl_name_length CHECK (CHAR_LENGTH(name) >= 3)
+);
+
+CREATE TABLE planet (
+id VARCHAR(20) PRIMARY KEY,
+name VARCHAR(500) NOT NULL,
+CHECK REGEXP_LIKE (id, '^[A-Z0-9]+$'),
+CONSTRAINT pl_name_length CHECK (CHAR_LENGTH(name) >= 1)
+);
+
+CREATE TABLE ticket (
+ID IDENTITY PRIMARY KEY,
+created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP AT TIME ZONE 'UTC' NOT NULL,
+client_id BIGINT,
+from_planet_id VARCHAR(20),
+to_planet_id VARCHAR(20),
+FOREIGN KEY(client_id) REFERENCES client(id),
+FOREIGN KEY(from_planet_id) REFERENCES planet(id),
+FOREIGN KEY(to_planet_id) REFERENCES planet(id)
+);
