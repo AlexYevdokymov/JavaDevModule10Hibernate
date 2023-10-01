@@ -1,5 +1,7 @@
-package org.example;
+package org.example.crud;
 
+import org.example.dao.Planet;
+import org.example.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
