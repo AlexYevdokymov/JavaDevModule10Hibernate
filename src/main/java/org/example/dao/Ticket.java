@@ -11,7 +11,7 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Transient
+    @Column(insertable = false)
     private String created_at;
     @ManyToOne
     private Client client;
